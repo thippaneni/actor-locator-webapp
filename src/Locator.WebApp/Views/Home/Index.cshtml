@@ -1,0 +1,52 @@
+﻿@model Locator.WebApp.Models.LandmarkRoutesViewModel;
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@*<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+</div>*@
+<div class="editor-field">
+        <table border="1">
+            <tr>
+                <th>Landmarks</th>
+                <th>Rotes</th>
+            </tr>
+            <tr>
+                <td>
+                    <table border="1">
+                        <tr>
+                            <th>Landmark Code</th>
+                            <th>Landmark Name</th>
+                        </tr>
+                        @foreach (LandmarkModel data in Model.Landmarks)
+                        {
+                            <tr>
+                                <td align="center">@data.Code</td>
+                                <td align="center">@data.Name</td>
+                            </tr>
+                        }
+                    </table>
+                </td>
+                <td>
+                    <table border="1">
+                        <tr>
+                            <th>Route Code</th>
+                            <th>Starting Landmark</th>
+                            <th>Ending Landmark</th>
+                            <th>Distance</th>
+                        </tr>
+                        @foreach (RouteModel data in Model.Routes)
+                        {
+                            <tr>
+                                <td align="center">@data.RouteCode</td>
+                                <td align="center">@data.StartLandmark.Code</td>
+                                <td align="center">@data.EndLandmark.Code</td>
+                                <td align="center">@data.Distance</td>
+                            </tr>
+                        }
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
