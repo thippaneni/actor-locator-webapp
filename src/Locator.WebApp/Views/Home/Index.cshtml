@@ -47,65 +47,76 @@
             </tr>
         </table>
     </div>
-
+<br /><br />
 <div>
-    @using (Html.BeginForm("DistanceBWLandmarks", "Home", FormMethod.Post))
-    {
-        <fieldset>
-            <legend><strong>Distance B/W Landmarks</strong></legend>
-            <table border="1">
-                <tr>
-                    <th>Start Landmark</th>
-                    <th>End Landmark</th>
-                    <th>Via Landmarks (, separated)</th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.DropDownListFor(x => x.StartLandmark, new SelectList(Model.Landmarks, "Code", "Name"), "Select")
-                    </td>
-                    <td>
-                        @Html.DropDownListFor(x => x.EndLandmark, new SelectList(Model.Landmarks, "Code", "Name"), "Select")
-                    </td>
-                    <td>
-                        @Html.TextBoxFor(x => x.ViaLandmarks)
-                    </td>
-                    <td>
-                        <input type='submit' value='Submit' />
-                    </td>
-                </tr>
-            </table>
-        </fieldset>
-    }
+    <table>
+        <tr>
+            <td>
+                <div>
+                    @using (Html.BeginForm("DistanceBWLandmarks", "Home", FormMethod.Post))
+                    {
+                        <fieldset>
+                            <legend><strong>Distance B/W Landmarks</strong></legend>
+                            <table border="1">
+                                <tr>
+                                    <th>Start Landmark</th>
+                                    <th>End Landmark</th>
+                                    <th>Via Landmarks (, separated)</th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @Html.DropDownListFor(x => x.StartLandmark, new SelectList(Model.Landmarks, "Code", "Name"), "Select")
+                                    </td>
+                                    <td>
+                                        @Html.DropDownListFor(x => x.EndLandmark, new SelectList(Model.Landmarks, "Code", "Name"), "Select")
+                                    </td>
+                                    <td>
+                                        @Html.TextBoxFor(x => x.ViaLandmarks)
+                                    </td>
+                                    <td>
+                                        <input type='submit' value='Submit' />
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    }
+                </div>
+            </td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>
+                <div>
+                    @using (Html.BeginForm("RoutesBWLandmarks", "Home", FormMethod.Post))
+                    {
+                        <fieldset>
+                            <legend><strong>Routes B/W Landmarks</strong></legend>
+                            <table border="1">
+                                <tr>
+                                    <th>Start Landmark</th>
+                                    <th>End Landmark</th>
+                                    <th>Max Stops</th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @Html.DropDownListFor(x => x.StartLandmark, new SelectList(Model.Landmarks, "Code", "Name"), "Select")
+                                    </td>
+                                    <td>
+                                        @Html.DropDownListFor(x => x.EndLandmark, new SelectList(Model.Landmarks, "Code", "Name"), "Select")
+                                    </td>
+                                    <td>
+                                        @Html.DropDownListFor(x => x.MaxStops, new SelectList(Model.Stops), "Select")
+                                    </td>
+                                    <td>
+                                        <input type='submit' value='Submit' />
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    }
+                </div>
+            </td>
+        </tr>
+    </table>
 </div>
 
-<div>
-    @using (Html.BeginForm("RoutesBWLandmarks", "Home", FormMethod.Post))
-    {
-        <fieldset>
-            <legend><strong>Routes B/W Landmarks</strong></legend>
-            <table border="1">
-                <tr>
-                    <th>Start Landmark</th>
-                    <th>End Landmark</th>
-                    <th>Max Stops</th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.DropDownListFor(x => x.StartLandmark, new SelectList(Model.Landmarks, "Code", "Name"), "Select")
-                    </td>
-                    <td>
-                        @Html.DropDownListFor(x => x.EndLandmark, new SelectList(Model.Landmarks, "Code", "Name"), "Select")
-                    </td>
-                    <td>
-                       @Html.DropDownListFor(x => x.MaxStops, new SelectList(Model.Stops), "Select")
-                    </td>
-                    <td>
-                        <input type='submit' value='Submit' />
-                    </td>
-                </tr>                
-            </table>
-        </fieldset>
-    }
-</div>
+
