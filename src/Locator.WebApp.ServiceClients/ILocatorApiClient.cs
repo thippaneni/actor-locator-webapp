@@ -11,5 +11,9 @@ namespace Locator.WebApp.ServiceClients
         Task<IEnumerable<LandmarkModel>> GetAllLandMarksAsync();
 
         Task<IEnumerable<RouteModel>> GetAllRoutesAsync();
+
+        Task<string> GetDistanceBWLandmarks(string startLandmark, string endLandmark, IEnumerable<string> viaLandmarkCodes);
+
+        Task<RoutesBwLandmarksModel> GetRoutesBWLandmarks(string startLandmark, string endLandmark, int? noOfStops);
     }
 }

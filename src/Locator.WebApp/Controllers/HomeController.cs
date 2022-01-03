@@ -25,13 +25,39 @@ namespace Locator.WebApp.Controllers
         {
             var landmarks = await _apiClinet.GetAllLandMarksAsync();
             var routes = await _apiClinet.GetAllRoutesAsync();
-            var data = new LandmarkRoutesViewModel() { Landmarks = landmarks, Routes = routes };
+            var data = new LandmarkRoutesViewModel() { Landmarks = landmarks, Routes = routes };            
             return View(data);
         }
 
         public IActionResult Privacy()
         {
+            
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DistanceBWLandmarks(LandmarkRoutesViewModel model)
+        {
+            string Distance = string.Empty;
+            if (model != null)
+            {
+                Distance = await _apiClinet.GetDistanceBWLandmarks(model.StartLandmark, model.EndLandmark, model.ViaLandmarks.Split(",").ToList());
+            }
+            ViewData["APIResult"] = $"Distance BW Landmarks - {model.StartLandmark} and {model.EndLandmark} via {model.ViaLandmarks} Landmarks is {Distance} ";
+            return View("Privacy");            
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RoutesBWLandmarks(LandmarkRoutesViewModel model)
+        {
+            RoutesBwLandmarksModel result = null;
+            if (model != null)
+            {
+                result = await _apiClinet.GetRoutesBWLandmarks(model.StartLandmark, model.EndLandmark, model.MaxStops);
+            }
+            var apiResult = $"Routes BW Landmarks - {model.StartLandmark} and {model.EndLandmark} having {model.MaxStops} max stops: \r\n  {result?.ToString()} ";
+            ViewData["APIResult"] = apiResult;
+            return View("Privacy");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

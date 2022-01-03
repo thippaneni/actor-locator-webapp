@@ -3,9 +3,6 @@
     ViewData["Title"] = "Home Page";
 }
 
-@*<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-</div>*@
 <div class="editor-field">
         <table border="1">
             <tr>
@@ -50,3 +47,65 @@
             </tr>
         </table>
     </div>
+
+<div>
+    @using (Html.BeginForm("DistanceBWLandmarks", "Home", FormMethod.Post))
+    {
+        <fieldset>
+            <legend><strong>Distance B/W Landmarks</strong></legend>
+            <table border="1">
+                <tr>
+                    <th>Start Landmark</th>
+                    <th>End Landmark</th>
+                    <th>Via Landmarks (, seperated)</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DropDownListFor(x => x.StartLandmark, new SelectList(Model.Landmarks, "Code", "Name"), "Select")
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(x => x.EndLandmark, new SelectList(Model.Landmarks, "Code", "Name"), "Select")
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(x => x.ViaLandmarks)
+                    </td>
+                    <td>
+                        <input type='submit' value='Submit' />
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    }
+</div>
+
+<div>
+    @using (Html.BeginForm("RoutesBWLandmarks", "Home", FormMethod.Post))
+    {
+        <fieldset>
+            <legend><strong>Routes B/W Landmarks</strong></legend>
+            <table border="1">
+                <tr>
+                    <th>Start Landmark</th>
+                    <th>End Landmark</th>
+                    <th>Max Stops</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DropDownListFor(x => x.StartLandmark, new SelectList(Model.Landmarks, "Code", "Name"), "Select")
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(x => x.EndLandmark, new SelectList(Model.Landmarks, "Code", "Name"), "Select")
+                    </td>
+                    <td>
+                       @Html.DropDownListFor(x => x.MaxStops, new SelectList(Model.Stops), "Select")
+                    </td>
+                    <td>
+                        <input type='submit' value='Submit' />
+                    </td>
+                </tr>                
+            </table>
+        </fieldset>
+    }
+</div>
