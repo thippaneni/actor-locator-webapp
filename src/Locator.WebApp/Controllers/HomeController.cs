@@ -41,7 +41,12 @@ namespace Locator.WebApp.Controllers
             string Distance = string.Empty;
             if (model != null)
             {
-                Distance = await _apiClinet.GetDistanceBWLandmarks(model.StartLandmark, model.EndLandmark, model.ViaLandmarks.Split(",").ToList());
+                var viaLandmarks = new List<string>();
+                if (!string.IsNullOrEmpty(model.ViaLandmarks))
+                {
+                    viaLandmarks = model.ViaLandmarks.Split(",").ToList();
+                }
+                Distance = await _apiClinet.GetDistanceBWLandmarks(model.StartLandmark, model.EndLandmark, viaLandmarks);
             }
             ViewData["APIResult"] = $"Distance BW Landmarks - {model.StartLandmark} and {model.EndLandmark} via {model.ViaLandmarks} Landmarks is {Distance} ";
             return View("Privacy");            
